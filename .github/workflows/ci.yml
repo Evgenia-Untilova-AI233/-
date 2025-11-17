@@ -24,10 +24,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install Playwright Browsers
-        run: |
-          npx playwright install-deps
-          node node_modules/playwright/cli.js install
+      # --- ГОЛОВНЕ ---
+      - name: Install Playwright globally
+        run: npm install -g playwright@latest
 
+      - name: Install Playwright browsers
+        run: playwright install --with-deps
+
+      # --- ТЕСТИ ---
       - name: Run tests
         run: npm test
